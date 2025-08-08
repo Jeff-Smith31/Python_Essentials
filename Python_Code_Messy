@@ -1,0 +1,881 @@
+//Merge Lists into Dictionary
+
+keys_list = ['A', 'B', 'C']
+
+values_list = ['blue', 'red', 'bold']
+
+
+
+#There are 3 ways to convert these two lists into a dictionary
+
+#1- Using Python's zip, dict functionz
+
+dict_method_1 = dict(zip(keys_list, values_list))
+
+
+
+#2- Using the zip function with dictionary comprehensions
+
+dict_method_2 = {key:value for key, value in zip(keys_list, values_list)}
+
+
+
+#3- Using the zip function with a loop
+
+items_tuples = zip(keys_list, values_list) 
+
+dict_method_3 = {} 
+
+for key, value in items_tuples: 
+
+    if key in dict_method_3: 
+
+        pass # To avoid repeating keys.
+
+    else: 
+
+        dict_method_3[key] = value
+
+
+
+//Sort Dict
+
+dicts_lists = [
+
+  {
+
+    "Name": "James",
+
+    "Age": 20,
+
+  },
+
+  {
+
+     "Name": "May",
+
+     "Age": 14,
+
+  },
+
+  {
+
+    "Name": "Katy",
+
+    "Age": 23,
+
+  }
+
+]
+
+
+
+#There are different ways to sort that list
+
+#1- Using the sort/ sorted function based on the age
+
+dicts_lists.sort(key=lambda item: item.get("Age"))
+
+
+
+#2- Using itemgetter module based on name
+
+from operator import itemgetter
+
+f = itemgetter('Name')
+
+dicts_lists.sort(key=f)
+
+
+
+//Map List to Dictionary
+
+mylist = ['blue', 'orange', 'green']
+
+#Map the list into a dict using the map, zip and dict functions
+
+mapped_dict = dict(zip(itr, map(fn, itr)))
+
+
+
+//Merge Dictionary
+
+from collections import defaultdict
+
+#merge two or more dicts using the collections module
+
+def merge_dicts(*dicts):
+
+  mdict = defaultdict(list)
+
+  for d in dicts:
+
+    for key in d:
+
+      mdict[key].append(d[key])
+
+  return dict(mdict)
+
+
+
+//F Strings
+
+#Formatting strings with f string.
+
+str_val = 'books'
+
+num_val = 15
+
+print(f'{num_val} {str_val}') # 15 books
+
+print(f'{num_val % 2 = }') # 1
+
+print(f'{str_val!r}') # books
+
+
+
+#Dealing with floats
+
+price_val = 5.18362
+
+print(f'{price_val:.2f}') # 5.18
+
+
+
+#Formatting dates
+
+from datetime import datetime;
+
+date_val = datetime.utcnow()
+
+print(f'{date_val=:%Y-%m-%d}') # date_val=2021-09-24
+
+
+
+//File Existence
+
+#Checking if a file exists in two ways
+
+#1- Using the OS module
+
+import os 
+
+exists = os.path.isfile('/path/to/file')
+
+
+
+#2- Use the pathlib module for a better performance
+
+from pathlib import Path
+
+config = Path('/path/to/file') 
+
+if config.is_file(): 
+
+    pass
+
+
+
+//Password Generation
+
+import string
+
+from random import *
+
+
+
+characters = string.ascii_letters + string.punctuation  + string.digits
+
+
+
+try:
+
+  length = int(input("Enter an integer number: "))
+
+  password = "".join(choice(characters) for x in range(length))
+
+  print(password)
+
+except ValueError:
+
+    print("Please input integer only") 
+
+
+
+//Run Time Calculator
+
+import timeit
+
+
+
+start = timeit.default_timer()
+
+
+
+# My code goes here
+
+total = 0
+
+for i in range(10):
+
+  total += i
+
+print("Sum:" ,total)
+
+#--------------
+
+
+
+stop = timeit.default_timer()
+
+
+
+print('Time: ', stop - start) 
+
+
+
+//Send Emails
+
+import smtplib
+
+  
+
+ReceiversList = ["abcd@gmail.com", "efgh@gmail.com", "hijk@gmail.com"]
+
+  
+
+for user in ReceiversList:
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login("YourEmailId@gmail.com", "YourEmailpassword")
+
+    message = "I am spamming you with gmails"
+
+    s.sendmail("sender_email_id", user, message)
+
+    s.quit()
+
+
+
+//Faker
+
+from faker import Faker
+
+fake = Faker()
+
+name=fake.name()
+
+print(name)
+
+address=fake.address()
+
+print(address)
+
+text=fake.text()
+
+print(text)
+
+
+
+//Progress Bars
+
+from tqdm import tqdm
+
+  
+
+  
+
+for i in tqdm(range(10000000)):
+
+    pass
+
+ 
+
+
+
+//Lambdas
+
+#The lambda keyword creates an inline function that contains a single expression. The value of this expression is what the function returns when invoked.
+
+#Use it inside a function
+
+def transform(n):
+
+  return lambda x: x + n
+
+
+
+f = transform(3)
+
+f(4)
+
+
+
+#7
+
+
+
+#simple lambda function
+
+lambda x: x**2 + 2*x - 5
+
+
+
+#Lamda
+
+a = lambda x: x + 1
+
+print a(1)
+
+
+
+#regular function
+
+def a(x): return x + 1
+
+print a(1)
+
+
+
+#Returns value directly after :
+
+
+
+/////////////////
+
+#Filter Function
+
+l1=[10,20,30,40,50,60,70,80]
+
+[i for i in filter(lambda x:x>30,l1)]
+
+
+
+Output
+
+[40, 50, 60, 70, 80]
+
+
+
+////Write and Read JSON
+
+import json
+
+d = {
+
+    "firstName": "Tom",
+
+    "lastName": "Jack",
+
+    "gender": "male",
+
+    "age": 35,
+
+    "address": {
+
+        "streetAddress": "126",
+
+        "city": "San Jone",
+
+        "state": "CA",
+
+        "postalCode": "95150"
+
+    },
+
+    "phoneNumbers": [
+
+        { "type": "home", "number": "4083627627" }
+
+    ]
+
+}
+
+
+
+filename = "/content/sample_data/sample1.json"
+
+with open(filename, 'w') as f:
+
+  json.dump(d, f)
+
+ 
+
+
+
+#Read the JSON file and also print the file content in JSON format.
+
+with open(filename, 'r') as f:
+
+  d = json.load(f)
+
+  print(json.dumps(d, indent=2))
+
+  
+
+#Output
+
+
+
+{
+
+  "firstName": "Tom",
+
+  "lastName": "Jack",
+
+  "gender": "male",
+
+  "age": 35,
+
+  "address": {
+
+    "streetAddress": "126",
+
+    "city": "San Jone",
+
+    "state": "CA",
+
+    "postalCode": "95150"
+
+  },
+
+  "phoneNumbers": [
+
+    {
+
+      "type": "home",
+
+      "number": "4083627627"
+
+    }
+
+  ]
+
+}
+
+
+
+//Read and Write CSV
+
+#Read Rows from CSV File
+
+def read_csv_file(filename):
+
+    with open(filename, encoding='utf-8', newline='') as file:
+
+        return list(csv.reader(file))
+
+      
+
+#Write Rows to CSV File
+
+def write_to_csv_file(filename, rows):
+
+    with open(filename, 'w', encoding='utf-8', newline='') as file:
+
+        writer = csv.writer(file)
+
+        writer.writerows(rows)
+
+
+
+# Load Multiple CSV to dataframe
+
+import glob
+
+import pandas as pd
+
+csv_files = glob.glob("/content/sample_data/*.csv")
+
+df = [pd.read_csv(filename) for filename in csv_files]
+
+
+
+
+
+//Date time shenanigans
+
+#Find the difference in days between two dates.
+
+
+
+from datetime import date
+
+start_date = date(2022, 1, 10)
+
+end_date = date(2022, 11, 10)
+
+(end_date - start_date).days
+
+
+
+
+
+#Find the difference between two dates in months.
+
+
+
+from datetime import date
+
+from math import ceil
+
+start_date = date(2022, 1, 10)
+
+end_date = date(2022, 11, 10)
+
+no_of_months = ceil((end_date - start_date).days / 30)
+
+print(no_of_months)
+
+
+
+Ouput
+
+11
+
+
+
+#check if the given date is a weekday or weekend
+
+from datetime import datetime
+
+week_date = date(2022, 3, 3)
+
+week_date.weekday() <= 4
+
+
+
+True
+
+
+
+from datetime import datetime
+
+week_date = date(2022, 3, 6)
+
+week_date.weekday() > 4
+
+
+
+True
+
+
+
+//Exception Handling
+
+#if X is defined
+
+x = "Python Rocks"
+
+try:
+
+  print(x)
+
+except:
+
+  print("Something went wrong")
+
+finally:
+
+  print("The try except is finished")
+
+Output:
+
+Python Rocks
+
+The try except is finished
+
+
+
+#if variable x is not defined.
+
+try:
+
+  print(x)
+
+except:
+
+  print("Something went wrong")
+
+finally:
+
+  print("The try except is finished")
+
+  
+
+Output:
+
+Something went wrong
+
+The try except is finished
+
+
+
+
+
+//urllib request
+
+import urllib.request
+
+my_url = urllib.request.urlopen('https://www.nytimes.com/')
+
+print (my_url.geturl())
+
+
+
+https://www.nytimes.com/
+
+  
+
+
+
+print (my_url.info())
+
+  
+
+Connection: close
+
+Content-Length: 2231610
+
+Server: nginx
+
+Content-Type: text/html; charset=utf-8
+
+x-b3-traceid: d4f288a7c4ab45de8bfd79895fd94167
+
+x-nyt-data-last-modified: Fri, 04 Mar 2022 17:31:39 GMT
+
+Last-Modified: Fri, 04 Mar 2022 17:31:39 GMT
+
+X-PageType: vi-homepage
+
+X-XSS-Protection: 1; mode=block
+
+X-Content-Type-Options: nosniff
+
+cache-control: s-maxage=30,no-cache
+
+x-nyt-route: homepage
+
+X-Origin-Time: 2022-03-04 17:31:55 UTC
+
+Accept-Ranges: bytes
+
+Date: Fri, 04 Mar 2022 17:31:55 GMT
+
+Age: 0
+
+X-Served-By: cache-lga21929-LGA, cache-fty21333-FTY
+
+X-Cache: MISS, MISS
+
+X-Cache-Hits: 0, 0
+
+X-Timer: S1646415113.332570,VS0,VE1936
+
+Vary: Accept-Encoding, Fastly-SSL
+
+Set-Cookie: nyt-a=ed4gGJZ0gSypR8V6ernv4l; Expires=Sat, 04 Mar 2023 17:31:55 GMT; Path=/; Domain=.nytimes.com; SameSite=none; Secure
+
+x-nyt-app-webview: 0
+
+Set-Cookie: nyt-gdpr=0; Expires=Fri, 04 Mar 2022 23:31:55 GMT; Path=/; Domain=.nytimes.com
+
+x-gdpr: 0
+
+Set-Cookie: nyt-purr=cfhhcfhhhckf; Expires=Sat, 04 Mar 2023 17:31:55 GMT; Path=/; Domain=.nytimes.com; SameSite=Lax; Secure
+
+Set-Cookie: nyt-geo=US; Expires=Fri, 04 Mar 2022 23:31:55 GMT; Path=/; Domain=.nytimes.com
+
+X-Frame-Options: DENY
+
+onion-location: https://www.nytimesn7cgmftshazwhfgzm37qxb44r64ytbb2dj3x62d2lljsciiyd.onion/
+
+X-API-Version: F-F-VI
+
+Content-Security-Policy: upgrade-insecure-requests; default-src data: 'unsafe-inline' 'unsafe-eval' https:; script-src data: 'unsafe-inline' 'unsafe-eval' https: blob:; style-src data: 'unsafe-inline' https:; img-src data: https: blob:; font-src data: https:; connect-src https: wss: blob:; media-src data: https: blob:; object-src https:; child-src https: data: blob:; form-action https:; report-uri https://csp.nytimes.com/report;
+
+Strict-Transport-Security: max-age=63072000; preload; includeSubdomains
+
+Set-Cookie: nyt-b3-traceid=d4f288a7c4ab45de8bfd79895fd94167; Path=/; Domain=.nytimes.com; SameSite=none; Secure
+
+x-nyt-edge-cache: MISS-MISS
+
+
+
+print (my_url.getcode())
+
+
+
+200
+
+  
+
+  
+
+//Encoding and Decoding
+
+pip install cryptography
+
+
+
+from cryptography.fernet import Fernet
+
+crypto_key = Fernet.generate_key()
+
+print (crypto_key)
+
+
+
+Output:
+
+b'b5DLHxREZaIxQmUU5xNKVR2LgBpK76gJ4aA50JGxsAM='
+
+
+
+crypto = Fernet(crypto_key)
+
+text = b'Use cryptograpgy for decoding and encoding'
+
+encrypted_text = crypto.encrypt(text)
+
+print (encrypted_text)
+
+
+
+Output:
+
+b'gAAAAABiItmgxhIeEVk9B1Q3PpHXxmJpq4SyQggWdidHc1T3s-LJRKCdeieg4IAy81EFAd5JfbQZwJkKQfERSu0WcGUNllyFZzSfntgr0g0S0dMVyyu8W8Y8McwlB1qbKxAxvwC4MgNq'
+
+
+
+decrypted_text = crypto.decrypt(encrypted_text)
+
+print (decrypted_text)
+
+
+
+Output:
+
+b'Use cryptograpgy for decoding and encoding'
+
+
+
+
+
+//Profiling
+
+import cProfile
+
+import re
+
+cProfile.run('re.compile("foo|bar")')
+
+
+
+//PDF to JSON
+
+#tabula-py requires a java environment, so let's check the java environment on your machine.
+
+!java -version
+
+
+
+!pip install -q tabula-py
+
+
+
+import tabula
+
+
+
+tabula.environment_info()
+
+
+
+import tabula
+
+pdf_path = "https://github.com/chezou/tabula-py/raw/master/tests/resources/data.pdf"
+
+
+
+dfs = tabula.read_pdf(pdf_path, stream=True)
+
+# read_pdf returns list of DataFrames
+
+print(len(dfs))
+
+dfs[0]
+
+
+
+# You can convert from pdf into JSON, CSV, TSV
+
+
+
+tabula.convert_into(pdf_path, "test.json", output_format="json")
+
+!cat test.json
+
+
+
+//String to Date
+
+from datetime import datetime
+
+
+
+date_string = "2022-03-10 10:10:10"
+
+print (datetime.fromisoformat(date_string))
+
+
+
+2022-03-10 10:10:10
+
+
+#############################################################
+Libraries
+Data Preprocessing Libraries:
+
+The important data preprocessing libraries used heavily by data scientist, data analyst and all the data professionals are
+
+		Pandas
+		Numpy
+
+Data Visualization Libraries:
+Here are some of the important data visualization libraries
+
+		Matplotlib
+		Seaborn
+		Plotly
+		Bokeh
+		Altair
+
+Web Scraping Python Modules:
+Some of the important web scraping libraries are
+
+		Scrapy
+		Beautiful Soup
+		Selenium
+		Requests
+		Urllib
+
+Machine and Deep Learning Libraries:
+Some of the popular machine learning and deep learning libraries are.
+
+		Sci-Kit Learn
+		Keras
+		Tensorflow
+		Pytorch
+		Mxnet
+
+Python Excel Libraries:
+
+		xlwings
+		XLsxwriter
+		xlrd
+		pyexcel
